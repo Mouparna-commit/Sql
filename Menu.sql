@@ -5,6 +5,7 @@ select count(menu_item_id) as total_item
 from Restaurant.dbo.menu_items; 
 
 -------What are the most and least expensive items on the menu ----------------
+--- CTE sql & Windows function-------
 
 with E as (select menu_item_id, item_name , price, 
 DENSE_RANK () over (order by price) as rn 
@@ -49,6 +50,8 @@ restaurant.dbo.menu_items a
 group by a.category; 
 
 --------- What is the avg dish price within each category ---------------
+--- aggregate functions --------
+
 Select a.category, 
 count(a.item_name) as num_of_dishes, 
 round(avg(cast(a.price as numeric (10,2))),2) as avg_dish_price
